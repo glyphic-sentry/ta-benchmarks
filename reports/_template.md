@@ -3,6 +3,7 @@ title: "Full Report Title"
 publisher: "Publisher Name"
 year: 2025
 url: "https://source-url.com"
+geography: "US / European / Global"
 methodology: "Brief description of how data was collected (survey, platform analytics, etc.)"
 sample_size: "N respondents / job postings / applications / etc."
 date_retrieved: "YYYY-MM-DD"

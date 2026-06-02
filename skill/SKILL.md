@@ -132,6 +132,7 @@ title: "Report Title"
 publisher: "Publisher Name"
 year: 2024
 url: "https://..."
+geography: "US / European / Global"
 methodology: "Brief description of how data was collected"
 sample_size: "N respondents / job postings / etc."
 date_retrieved: "YYYY-MM-DD"
@@ -177,40 +178,76 @@ tell the user what you found and why each one was included or excluded.
 
 Use this phase whenever someone asks a recruiting or TA data question.
 
-### 2a. Clarify the year(s)
+### 2a. Clarify the year(s) and geography
 
-Before searching, ask: **"Which year are you looking for — or would you like a
-year-over-year comparison?"** Year matters because acceptance rates, time-to-fill,
+Before searching, establish two things:
+
+**Year:** Ask "Which year are you looking for — or would you like a
+year-over-year comparison?" Year matters because acceptance rates, time-to-fill,
 and other metrics shift significantly across cohorts. If the user says "latest"
 or "most recent", use the highest year available.
+
+**Geography:** Ask or infer whether the user wants **US**, **European**, or
+**global** benchmarks. If not specified, default to US data where available,
+and note when you're supplementing with European or global data.
+
+Geography matters because our knowledge base includes both:
+- **US-focused reports:** BLS JOLTS, Mercer US Turnover, Pin State of TA, SHRM,
+  CareerPlug, Ashby (global with US skew)
+- **European-focused reports:** Ravio Attrition & Retention, Ravio Tech Hiring
+  Trends (explicitly European tech only)
+- **Global / mixed:** Gem outreach benchmarks, Ashby recruiting ops
 
 ### 2b. Search the knowledge base
 
 List all files in `<workspace>/ta-benchmarks/reports/`. For each relevant file,
-read it and extract the stats, quotes, or context that answers the question.
-Prefer specific numeric values with their context (sample size, segment, role
-type) over vague qualitative statements.
+check the YAML frontmatter `methodology` field to identify geography. Read
+relevant files and extract the stats, quotes, or context that answer the
+question. Prefer specific numeric values with their context (sample size,
+segment, role type, **and geography**) over vague qualitative statements.
+
+**Geography tagging in the YAML frontmatter:**
+- Ravio reports → European tech
+- BLS, Mercer US, Pin, SHRM → US
+- Ashby → global (Ashby customer base, skews US/European tech)
+- Gem → global
+- CareerPlug → US
 
 ### 2c. Compose the answer
 
-Structure your answer like this:
+Always label the geography of every data point. Structure your answer like this:
 
 **[Metric / question answered]**
 
-[Direct answer with numbers]
+[Direct answer with numbers, each stat tagged with geography]
 
-**Sources:**
-- *[Report Title]* ([Publisher], [Year]) — [stat with context]
-- *[Report Title]* ([Publisher], [Year]) — [stat with context]
+**US data:**
+- [stat] — *[Report Title]* ([Publisher], [Year])
 
-If multiple reports disagree, surface the discrepancy and explain possible
-reasons (different sample populations, methodologies, time periods).
+**European data:**
+- [stat] — *[Report Title]* ([Publisher], [Year])
+
+**Global / mixed:**
+- [stat] — *[Report Title]* ([Publisher], [Year])
+
+If only one geography is available, say so explicitly:
+> "We only have US data on this metric. European benchmarks may differ."
+
+If the user asked specifically about the US and a European stat is the only
+available proxy, flag it clearly:
+> "This figure is from European tech (Ravio). US data on this specific metric
+> isn't in the knowledge base yet — the European trend is likely directional
+> but not directly comparable."
+
+If multiple reports from the same geography disagree, surface the discrepancy
+and explain possible reasons (different sample populations, methodologies, time
+periods).
 
 ### 2d. Quote search
 
 If the user asks to "find a quote" or "what does [report] say about X", scan
 the `## Notable Quotes` sections across relevant reports and return verbatim
-quotes with full attribution (publisher, year, section).
+quotes with full attribution (publisher, year, geography, section).
 
 ---
 
