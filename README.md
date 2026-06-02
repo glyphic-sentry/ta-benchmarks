@@ -62,9 +62,21 @@ Show me the trend in applications per hire since 2021.
 Find a quote about referral conversion rates.
 ```
 
+### Set up GitHub auto-push
+
+The skill pushes new reports straight to this repo whenever you add one. One-time setup:
+
+1. Create a GitHub personal access token at [github.com/settings/tokens](https://github.com/settings/tokens) with **repo** scope
+2. Edit `.skill-config` in this folder (it's gitignored — never committed):
+   ```
+   GITHUB_TOKEN=ghp_your_token_here
+   GITHUB_REPO=glyphic-sentry/ta-benchmarks
+   ```
+3. That's it. Next time you say *"Add this doc to the skill"* in Cowork, it saves the markdown file and pushes it to this repo automatically.
+
 ### Set up weekly auto-updates
 
-Ask the skill: *"Set up weekly report discovery"* — it will schedule a Monday morning search for newly published TA reports, evaluate them against the credibility criteria, and add qualifying ones automatically.
+Ask the skill: *"Set up weekly report discovery"* — it will schedule a Monday morning search for newly published TA reports, evaluate them against the credibility criteria, add qualifying ones, and push them to this repo automatically.
 
 ---
 
